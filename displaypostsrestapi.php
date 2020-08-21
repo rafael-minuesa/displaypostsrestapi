@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:  Display 5 Posts using REST API
- * Description:  Display the latest 5 posts from https://example.com/blog/
- * Plugin URI:   https://prowoos.com/
+ * Description:  Display the latest 5 posts from https://protonmail.com/blog/
+ * Plugin URI:   https://proton.prowoos.com/
  * Author:       Rafael Minuesa
  * Author URI:   https://www.linkedin.com/in/rafaelminuesa/
  * Version:      1.1
@@ -13,20 +13,21 @@
  * @package displaypostsrestapi
  */
 
- if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly
+// Disable direct file access.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 /**
  * Get posts via REST API.
  */
-function display_blog_posts() {
+function display_protonmail_posts() {
 
 	// Initialize variable.
 	$allposts = '';
 	
-	// End point of Blog and filter the result to limit the display to 5 posts.
-	$response = wp_remote_get( 'https://example.com/blog/wp-json/wp/v2/posts?per_page=5' );
+	// End point of ProtonMail Blog and filter the result to limit the display to 5 posts.
+	$response = wp_remote_get( 'https://protonmail.com/blog/wp-json/wp/v2/posts?per_page=5' );
 
 	// Exit if error.
 	if ( is_wp_error( $response ) ) {
@@ -52,7 +53,7 @@ function display_blog_posts() {
 			$fordate = date( 'n/j/Y', strtotime( $post->modified ) );
 
 			// Show a linked title and post date.
-			$allposts .= '<a href="' . esc_url( $post->link ) . '" target=\"_blank\">' . esc_html( $post->title->rendered ) . '</a>  ' . esc_html( $fordate ) . '<br />';
+			$allposts .= '<a href="' . esc_url( $post->link ) . '" target=\"_blank\">' . esc_html( $post->title->rendered ) . '</a><br />  ' . esc_html( $fordate ) . '<br />  ' . esc_html( $post->excerpt->rendered ) . '<br /><br />';
 		}
 		
 		return $allposts;
@@ -60,4 +61,4 @@ function display_blog_posts() {
 
 }
 // Register shortcode to be used on the site.
-add_shortcode( 'five_blog_posts', 'display_blog_posts' );
+add_shortcode( 'five_protonmail_posts', 'display_protonmail_posts' );
