@@ -38,7 +38,7 @@ if( !is_wp_error( $response ) && $response['response']['code'] == 200 ) {
    foreach( $remote_posts as $remote_post ) {
 
     // Format the date.
-	$fordate = date( 'j/n/Y', strtotime( $post->modified ) );
+	$fordate = date( 'jS \of F Y', strtotime( $remote_post->modified ) );
 
     // Get Feaured Image 
     if ( ! empty( $remote_post->featured_media ) && isset( $remote_post->_embedded ) ) {
@@ -47,9 +47,9 @@ if( !is_wp_error( $response ) && $response['response']['code'] == 200 ) {
     // Get Author Name 
     if ( ! empty( $remote_post->author ) && isset( $remote_post->_embedded ) ) {
         $author_name = $remote_post->_embedded->author[0]->name;
+        $author_name_url = $remote_post->_embedded->author[0]->source_url;
     }
-    echo '<a href="' . esc_url( $remote_post->link ) . '" target=\"_blank\"><h3>' . esc_html( $remote_post->title->rendered ) . '</h3></a>  ' .
-        '<p><a href="' . esc_url( $remote_post->link ) . '" target=\"_blank\"><img src="' . $thumb_url . '" /></a>'   . esc_html( $fordate ) . ' by ' . esc_html( $author_name ) . '<br />  ' .$remote_post->excerpt->rendered . '</p>';
+    echo '<a href="' . esc_url( $remote_post->link ) . '" target=\"_blank\"><h3>' . esc_html( $remote_post->title->rendered ) . '</h3></a>'. esc_html( $fordate ) . ' by <a href="' . esc_url( $remote_post->$author_name_url ) . '" target=\"_blank\">' . esc_html( $author_name ) . '</a><p><a href="' . esc_url( $remote_post->link ) . '" target=\"_blank\"><img src="' . $thumb_url . '" /></a>'  .$remote_post->excerpt->rendered . '</p>';
 }
 		}
 		
