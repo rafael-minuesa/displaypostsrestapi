@@ -59,3 +59,6 @@ if( !is_wp_error( $response ) && $response['response']['code'] == 200 ) {
 
 // Register shortcode to be used on the site
 add_shortcode( 'five_protonmail_posts', 'display_protonmail_posts' );
+
+// https://stackoverflow.com/questions/51889908/how-to-use-wpfeaturedmedia-in-wp-rest-api-response/51890483
+// https://stackoverflow.com/questions/36144270/wp-rest-api-vs-how-can-i-get-author-information-from-v2-the-author-id/40599471
