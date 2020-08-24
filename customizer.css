@@ -1,0 +1,9 @@
+/*** Custom CSS ***/
+
+/* Sticky Menu */
+.main-header-bar.ast-sticky-active .main-header-menu .menu-item.focus > .menu-link {
+    color: #FFFFFF;
+}
+.main-header-bar.ast-sticky-active .main-header-menu .menu-item.focus > .menu-link:hover {
+    color: #d0d8ea;
+}
