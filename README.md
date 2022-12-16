@@ -1,5 +1,7 @@
 # displaypostsrestapi
-Display Posts using REST API
+WordPress plugin to display WP Posts from an external website using the REST API
+For this Project I communicated to the REST API endpoint at the ProtonMail Blog at: https://protonmail.com/blog/
+
 
 **The Process**
 
